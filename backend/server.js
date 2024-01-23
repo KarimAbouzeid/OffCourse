@@ -21,6 +21,7 @@ mongoose
     app.listen(process.env.PORT, () => {
       console.log("Listening to PORT", process.env.PORT);
     });
+    console.log("Connected to DB");
   })
   .catch((error) => {
     console.log(error);
