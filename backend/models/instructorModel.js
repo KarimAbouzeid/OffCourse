@@ -10,6 +10,16 @@ const instructorModel = new Schema({
     type: String,
     required: true,
   },
+
+  minibiography: {
+    type: String,
+    default: "",
+  },
+
+  email: {
+    type: String,
+    default: "",
+  },
 });
 
 module.exports = mongoose.model("Instructor", instructorModel);

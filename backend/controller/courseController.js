@@ -1,5 +1,6 @@
 const Course = require("../models/courseModel");
 const Instructor = require("../models/instructorModel");
+const RatingCourse = require("../models/ratingCourseModel");
 
 const getAllCourses = async (req, res) => {
   try {
@@ -34,6 +35,11 @@ const createCourse = async (req, res) => {
       subject: subject,
       instructor: instructor,
       rating: 0,
+    });
+
+    const ratingCourse = await RatingCourse.create({
+      rating: 0,
+      courseID: course._id,
     });
     res.status(200).json({ course: course });
   } catch (error) {

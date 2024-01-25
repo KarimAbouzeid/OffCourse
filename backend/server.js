@@ -6,6 +6,8 @@ require("dotenv").config();
 
 const courseRouter = require("./routes/courseRouter");
 const adminRouter = require("./routes/adminRouter");
+const traineeRouter = require("./routes/traineeRouter");
+const instructorRouter = require("./routes/instructorRouter");
 
 app.use(cors());
 app.use(express.json());
@@ -29,3 +31,5 @@ mongoose
 
 app.use("/api/courses", courseRouter);
 app.use("/api/admin", adminRouter);
+app.use("/api/trainee", traineeRouter);
+app.use("/api/instructor", instructorRouter);

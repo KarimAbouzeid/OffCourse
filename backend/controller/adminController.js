@@ -4,6 +4,9 @@ const Admin = require("../models/adminModel");
 const Instructor = require("../models/instructorModel");
 const CorporateTrainee = require("../models/corporateTraineeModel");
 const User = require("../models/userModel");
+const RatingCourse = require("../models/ratingCourseModel");
+const RatingInstructor = require("../models/ratingInstructorModel");
+
 const addAdmin = async (req, res) => {
   console.log(req.body);
   try {
@@ -44,6 +47,11 @@ const addInstructor = async (req, res) => {
     const instructor = await Instructor.create({
       username: username,
       password: password,
+    });
+
+    const ratingInstructor = await RatingInstructor.create({
+      rating: 0,
+      instructorID: instructor._id,
     });
     res.status(200).json(instructor);
   } catch (error) {

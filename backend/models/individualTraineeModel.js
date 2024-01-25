@@ -38,3 +38,5 @@ const individualTraineeSchema = new Schema(
   },
   { timestamps: true }
 );
+
+module.exports = mongoose.model("IndividualTrainee", individualTraineeSchema);

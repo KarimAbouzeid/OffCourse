@@ -29,6 +29,9 @@ const courseModel = new Schema(
       type: Number,
       default: 0,
     },
+    coursePreview: {
+      type: String,
+    },
   },
   { timestamps: true }
 );
