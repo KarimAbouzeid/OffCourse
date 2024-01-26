@@ -3,17 +3,21 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const subtitleSchema = new Schema({
+  title: {
+    type: String,
+    required: true,
+  },
   courseID: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
   },
   videoURL: {
     type: String,
-    required: true,
+    required: false,
   },
-  description: {
+  descriptionOfVideo: {
     type: String,
-    required: true,
+    required: false,
   },
 });
 

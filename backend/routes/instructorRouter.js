@@ -19,4 +19,6 @@ router.get("/viewMyCoursesRating/:id", viewCourseRating);
 // Instructor changes password
 router.post("/changeMyPassword", changeMyPassword);
 
+// Instructor creates a test
+
 module.exports = router;

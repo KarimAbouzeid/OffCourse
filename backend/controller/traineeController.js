@@ -5,6 +5,8 @@ const Course = require("../models/courseModel");
 const RatingCourse = require("../models/ratingCourseModel");
 const RatingInstructor = require("../models/ratingInstructorModel");
 const User = require("../models/userModel");
+const TraineeExercise = require("../models/traineeExerciseModel");
+const Exercise = require("../models/exerciseModel");
 
 const rateInstructor = async (req, res) => {
   const { username, instructorID, rating } = req.body;
@@ -146,8 +148,92 @@ const changeMyPassword = async (req, res) => {
   }
 };
 
+// Trainee submits exercise
+const submitExercise = async (req, res) => {
+  const { traineeUsername, exerciseID, traineeAnswers } = req.body;
+
+  try {
+    let traineeExercise = await TraineeExercise.findOneAndDelete({
+      traineeUsername: traineeUsername,
+      exerciseID: exerciseID,
+    });
+
+    const exercise = await Exercise.findOne({ _id: exerciseID });
+    const correctAnswers = exercise.correctAnswers;
+    if (correctAnswers.length != traineeAnswers.length) {
+      return res
+        .status(400)
+        .json({ message: "Trainee didnot complete all answers" });
+    }
+    let counter = 0;
+    wrongAnswers = [];
+    for (let i = 0; i < correctAnswers.length; i++) {
+      if (correctAnswers[i] == traineeAnswers[i]) {
+        counter += 1;
+      } else {
+        const questionObject = {
+          question: exercise.questions[i],
+          traineeAnswer: traineeAnswers[i],
+          correctAnswer: correctAnswers[i],
+        };
+        wrongAnswers.push(questionObject);
+      }
+    }
+    const grade = ((counter / correctAnswers.length) * 100).toFixed(2);
+
+    traineeExercise = await TraineeExercise.create({
+      traineeUsername: traineeUsername,
+      exerciseID: exerciseID,
+      traineeAnswers: traineeAnswers,
+      traineeGrade: grade,
+      traineeIncorrectAnswers: wrongAnswers,
+    });
+
+    res.status(200).json({ traineeExercise: traineeExercise });
+  } catch (error) {
+    res.status(400).json("Error submitting the exercise");
+  }
+};
+
+// Trainee views grade of exercise
+const viewGrade = async (req, res) => {
+  const { traineeUsername, exerciseID } = req.params;
+
+  try {
+    const traineeExercise = await TraineeExercise.findOne({
+      traineeUsername: traineeUsername,
+      exerciseID: exerciseID,
+    });
+
+    res.status(200).json({ grade: traineeExercise.traineeGrade });
+  } catch (error) {
+    res.status(400).json({ message: "Error viewing trainee grade" });
+  }
+};
+
+const viewIncorrectAnswers = async (req, res) => {
+  const { traineeUsername, exerciseID } = req.params;
+
+  try {
+    const traineeExercise = await TraineeExercise.findOne({
+      traineeUsername: traineeUsername,
+      exerciseID: exerciseID,
+    });
+    res
+      .status(200)
+      .json({ IncorrectAnswers: traineeExercise.traineeIncorrectAnswers });
+  } catch (error) {
+    res
+      .status(400)
+      .json({ message: "Error viewing trainee incorrect answers" });
+  }
+};
+
 module.exports = {
   rateInstructor,
   rateCourse,
   changeMyPassword,
+  submitExercise,
+  viewGrade,
+  viewIncorrectAnswers,
 };

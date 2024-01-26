@@ -1,5 +1,3 @@
-const mongoose = require("mongoose");
-
 const Admin = require("../models/adminModel");
 const Instructor = require("../models/instructorModel");
 const CorporateTrainee = require("../models/corporateTraineeModel");

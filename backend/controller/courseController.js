@@ -1,6 +1,8 @@
 const Course = require("../models/courseModel");
 const Instructor = require("../models/instructorModel");
+const Subtitle = require("../models/subtitleModel");
 const RatingCourse = require("../models/ratingCourseModel");
+const Exercise = require("../models/exerciseModel");
 
 const getAllCourses = async (req, res) => {
   try {
@@ -29,7 +31,6 @@ const createCourse = async (req, res) => {
     }
     const course = await Course.create({
       title: title,
-      subtitles: subtitles,
       price: price,
       summary: summary,
       subject: subject,
@@ -41,7 +42,16 @@ const createCourse = async (req, res) => {
       rating: 0,
       courseID: course._id,
     });
-    res.status(200).json({ course: course });
+
+    const createSubtitles = subtitles.map(async (subtitle) => {
+      const newSubtitle = await Subtitle.create({
+        title: subtitle,
+        courseID: course._id,
+      });
+    });
+
+    const createdSubtitles = await Promise.all(createSubtitles);
+    res.status(200).json({ course: course, subtitles: createdSubtitles });
   } catch (error) {
     res.status(400).json({ message: "Error creating the course" });
   }
@@ -136,6 +146,55 @@ const searchInstructorCourses = async (req, res) => {
   }
 };
 
+// upload Youtube link to preview the course
+const uploadCoursePreview = async (req, res) => {
+  const { courseID, link } = req.body;
+
+  try {
+    const course = await Course.findOneAndUpdate(
+      { _id: courseID },
+      { coursePreview: link }
+    );
+    res.status(200).json({ course: course });
+  } catch (error) {
+    res.status(400).json({ message: "Couldn't upload course preview" });
+  }
+};
+
+// upload Youtube link to preview the "subtitle"
+const uploadSubtitleVideo = async (req, res) => {
+  const { subtitleID, link, description } = req.body;
+  try {
+    const subtitle = await Subtitle.findOneAndUpdate(
+      { _id: subtitleID },
+      { videoURL: link, descriptionOfVideo: description }
+    );
+    res.status(200).json({ subtitle: subtitle });
+  } catch (error) {
+    res
+      .status(400)
+      .json("Error uploading the video and description for the subtitle!");
+  }
+};
+
+// create Exercise (htkon s3ba fel frontend)
+const createExercise = async (req, res) => {
+  const { subtitleID, questions, choices, correctAnswers } = req.body;
+
+  try {
+    const exercise = await Exercise.create({
+      subtitleID: subtitleID,
+      questions: questions,
+      choices: choices,
+      correctAnswers: correctAnswers,
+    });
+    res.status(200).json({ exercise: exercise });
+  } catch (error) {
+    res.status(400).json({ message: "Can't create exercise" });
+  }
+};
+
+// DONOT CHANGE ITS PLACE, HELPER FUNCTION
 const searchCourse = (course, search) => {
   console.log(search);
   return (
@@ -144,7 +203,6 @@ const searchCourse = (course, search) => {
     course.instructor.includes(search)
   );
 };
-
 module.exports = {
   getAllCourses,
   createCourse,
@@ -154,4 +212,7 @@ module.exports = {
   filterAllCoursesByPrice,
   filterAllCoursesBySubjectRating,
   filterInstructorCoursesBySubjectPrice,
+  uploadCoursePreview,
+  uploadSubtitleVideo,
+  createExercise,
 };
