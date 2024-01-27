@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+
+.hero-banner-container {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("../images/HeroBanner4.jpeg");
+  height: 600px;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  margin-left: 0px;
+}
+
+.hero-banner-title {
+  color: white;
+  font-family: "Open Sans";
+  text-align: left;
+  font-size: 50px;
+  margin-top: 20px;
+}
