@@ -11,6 +11,7 @@ const {
   filterInstructorCoursesBySubjectPrice,
   uploadCoursePreview,
   uploadSubtitleVideo,
+  createExercise,
 } = require("../controller/courseController");
 
 // Get All Courses
@@ -23,10 +24,10 @@ router.post("/", createCourse);
 router.post("/search", searchAllCourses);
 
 // Filter All Courses By Price
-router.post("/filter", filterAllCoursesByPrice);
+router.post("/filter/:price", filterAllCoursesByPrice);
 
 // Filter All Courses By Rating and/or Subject
-router.post("/filterRating", filterAllCoursesBySubjectRating);
+router.get("/filterRating/:rating?/:subject?", filterAllCoursesBySubjectRating);
 
 // Get Instructor Courses
 router.get("/:id", getInstructorCourses);

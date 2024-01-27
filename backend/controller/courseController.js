@@ -6,9 +6,19 @@ const Exercise = require("../models/exerciseModel");
 
 const getAllCourses = async (req, res) => {
   try {
-    const courses = await Course.find();
+    let courses = await Course.find();
 
-    res.status(200).json({ courses: courses });
+    const coursesWithRatingsPromise = courses.map(async (course) => {
+      const ratingCourse = await RatingCourse.findOne({ courseID: course._id });
+
+      // console.log({ ...course._doc, ...ratingCourse._doc });
+      return { ...course._doc, ...ratingCourse._doc };
+    });
+
+    const coursesWithRatings = await Promise.all(coursesWithRatingsPromise);
+    console.log(coursesWithRatings);
+
+    res.status(200).json({ courses: coursesWithRatings });
   } catch (error) {
     res.status(400).json({ message: "Error fetching the courses" });
   }
@@ -83,7 +93,7 @@ const searchAllCourses = async (req, res) => {
 };
 
 const filterAllCoursesByPrice = async (req, res) => {
-  const { price } = req.body;
+  const { price } = req.params;
   try {
     const courses = await Course.find({});
     const result = courses.filter((course) => {
@@ -96,15 +106,25 @@ const filterAllCoursesByPrice = async (req, res) => {
 };
 
 const filterAllCoursesBySubjectRating = async (req, res) => {
-  const { subject, rating } = req.body;
+  const { subject, rating } = req.params;
   try {
     const courses = await Course.find({});
-    const result = courses.filter((course) => {
+    const coursesWithRatingsPromise = courses.map(async (course) => {
+      const ratingCourse = await RatingCourse.findOne({ courseID: course._id });
+
+      // console.log({ ...course._doc, ...ratingCourse._doc });
+      return { ...course._doc, ...ratingCourse._doc };
+    });
+
+    const coursesWithRatings = await Promise.all(coursesWithRatingsPromise);
+
+    const result = coursesWithRatings.filter((course) => {
       return (
         (subject && course.subject.includes(subject)) ||
         (rating >= 0 && course.rating >= rating)
       );
     });
+
     res.status(200).json({ courses: result });
   } catch (error) {
     res.status(400).json({ message: "Error filtering the courses" });
