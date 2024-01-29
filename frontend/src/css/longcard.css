@@ -1,0 +1,24 @@
+.longcard-container {
+  margin-top: 100px;
+  margin-left: 70px;
+  display: flex;
+  align-items: center;
+  background-color: #fff; /* Adjust the background color as needed */
+  border-radius: 10px; /* Rounded corners for the card */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow effect for the card */
+  margin-bottom: 20px; /* Space between cards if you have multiple cards */
+  /* Add padding, width, or max-width as needed */
+}
+.longcard-image {
+  width: 50%;
+  height: auto;
+  border-radius: 10px 0 0 10px;
+  margin-right: 150px;
+}
+
+.course-content {
+  padding: 10px 20px; /* Adjust padding as needed */
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}

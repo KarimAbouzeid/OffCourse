@@ -1,5 +1,14 @@
 .container-sidebar {
   margin-top: 100px;
-  max-width: 400px;
-  align-items: right;
+  max-width: 30%;
+  text-align: left;
+  margin-left: 100px;
+}
+.filter-container {
+  display: flex; /* Enables Flexbox */
+  align-items: center; /* Vertically centers the flex items */
+  justify-content: start; /* Aligns items to the start of the container */
+}
+.filter-title {
+  margin-right: 190px; /* Adds space between the title and the dropdown */
 }

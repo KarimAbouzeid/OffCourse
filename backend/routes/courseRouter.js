@@ -12,6 +12,7 @@ const {
   uploadCoursePreview,
   uploadSubtitleVideo,
   createExercise,
+  getAllSubjects,
 } = require("../controller/courseController");
 
 // Get All Courses
@@ -29,9 +30,6 @@ router.post("/filter/:price", filterAllCoursesByPrice);
 // Filter All Courses By Rating and/or Subject
 router.get("/filterRating/:rating?/:subject?", filterAllCoursesBySubjectRating);
 
-// Get Instructor Courses
-router.get("/:id", getInstructorCourses);
-
 // Search Instructor Courses
 router.post("/search/:id", searchInstructorCourses);
 
@@ -46,5 +44,11 @@ router.post("/uploadSubtitleVideo", uploadSubtitleVideo);
 
 // Create Exercise and MCQ as well as setting the answers
 router.post("/createExercise", createExercise);
+
+// Get All subjects and there count
+router.get("/getAllSubjects", getAllSubjects);
+
+// Get Instructor Courses
+router.get("/:id", getInstructorCourses);
 
 module.exports = router;

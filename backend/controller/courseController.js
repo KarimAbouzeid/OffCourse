@@ -20,7 +20,7 @@ const getAllCourses = async (req, res) => {
 
     res.status(200).json({ courses: coursesWithRatings });
   } catch (error) {
-    res.status(400).json({ message: "Error fetching the courses" });
+    res.status(400).json({ message: "Error fetching the coursess" });
   }
 };
 
@@ -77,7 +77,7 @@ const getInstructorCourses = async (req, res) => {
     const courses = await Course.find({ instructor: instructor.username });
     res.status(200).json({ courses: courses });
   } catch (error) {
-    res.status(400).json({ message: "Error fetching the courses" });
+    res.status(400).json({ message: "Error fetching the courses!" });
   }
 };
 
@@ -120,8 +120,9 @@ const filterAllCoursesBySubjectRating = async (req, res) => {
 
     const result = coursesWithRatings.filter((course) => {
       return (
-        (subject && course.subject.includes(subject)) ||
-        (rating >= 0 && course.rating >= rating)
+        (!subject || course.subject.includes(subject)) &&
+        rating >= 0 &&
+        course.rating >= rating
       );
     });
 
@@ -214,6 +215,35 @@ const createExercise = async (req, res) => {
   }
 };
 
+const getAllSubjects = async (req, res) => {
+  console.log("HEREEE");
+  try {
+    let subjectArr = {};
+    const courses = await Course.find();
+
+    courses.forEach((course) => {
+      if (subjectArr[course.subject]) {
+        subjectArr[course.subject] += 1;
+      } else {
+        subjectArr[course.subject] = 1;
+      }
+    });
+    console.log(courses);
+    console.log(subjectArr);
+    const subjectsCount = Object.keys(subjectArr).map((subject) => ({
+      subject: subject,
+      count: subjectArr[subject],
+    }));
+    console.log(subjectsCount);
+    res.status(200).json({ subjectsCount: subjectsCount });
+  } catch (error) {
+    console.log(error);
+    res
+      .status(400)
+      .json({ message: "Erorr fetching the subjects of the courses" });
+  }
+};
+
 // DONOT CHANGE ITS PLACE, HELPER FUNCTION
 const searchCourse = (course, search) => {
   console.log(search);
@@ -223,6 +253,7 @@ const searchCourse = (course, search) => {
     course.instructor.includes(search)
   );
 };
+
 module.exports = {
   getAllCourses,
   createCourse,
@@ -235,4 +266,5 @@ module.exports = {
   uploadCoursePreview,
   uploadSubtitleVideo,
   createExercise,
+  getAllSubjects,
 };
