@@ -1,0 +1,27 @@
+.coursePage-container {
+  background-color: #252525;
+  color: white;
+  padding: 20px 100px;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  height: 280px;
+}
+
+.course-titleMain {
+  font-size: 50px;
+  margin-bottom: 15px;
+}
+
+.course-SummaryMain {
+  margin-top: 15px;
+  margin-bottom: 25px;
+}
+
+.previewCourse-container {
+  height: 470px;
+  width: 400px;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}

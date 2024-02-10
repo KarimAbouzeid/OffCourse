@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import CourseCard from "./CourseCard";
+import "../css/herobanner.css";
 
 function PopularCourses() {
   const [courses, setCourses] = useState([]);
@@ -14,15 +15,16 @@ function PopularCourses() {
   }, []);
   return (
     <div>
-      <h2>Recommended for you:</h2>
-      {courses.slice(0, 5).map((course, index) => (
-        <div key={index}>
-          <CourseCard course={course} />
-          {/* // <p>{course.title}</p>
-          // <p>{course.subject}</p>
-          // <p>{course.price}</p> */}
-        </div>
-      ))}
+      <h2 style={{ textAlign: "left", fontSize: "30px" }}>
+        Recommended for you:
+      </h2>
+      <div className="popularCourses-container">
+        {courses.slice(0, 5).map((course, index) => (
+          <div key={index}>
+            <CourseCard course={course} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

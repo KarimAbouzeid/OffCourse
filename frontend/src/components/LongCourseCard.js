@@ -10,22 +10,31 @@ function LongCourseCard({ course }) {
         alt="Place holder image for course"
         className="longcard-image"
       />
-      <div class="course-content">
-        <h1 class="course-title">{course.title}</h1>
-        <p class="instructor-name">{course.instructor}</p>
-        <div class="course-rating-price">
-          <span>
-            <span class="rating">{course.rating} </span>
-            {course.rating < 1 && course.rating >= 0 && "☆ ☆ ☆ ☆ ☆"}{" "}
-            {course.rating < 2 && course.rating >= 1 && "★ ☆ ☆ ☆ ☆"}
-            {course.rating < 3 && course.rating >= 2 && "★ ★ ☆ ☆ ☆"}
-            {course.rating < 4 && course.rating >= 3 && "★ ★ ★ ★ ☆"}
-            {course.rating < 5 && course.rating >= 4 && "★ ★ ★ ★ ☆"}
-            {course.rating >= 5 && "★ ★ ★ ★ ★"}
-            <span>({course.usersThatRated.length})</span>
+      <div className="course-content">
+        <h1 className="course-title">{course.title}</h1>
+        <p className="course-summary truncate">{course.summary}</p>
+        <p class="author-name">Given by: {course.instructor}</p>
+        <div>
+          <span className="course-rating ">
+            <span class="course-rating-number">{course.rating} </span>
+            <span style={{ color: "#ffa534" }}>
+              {course.rating < 1 && course.rating >= 0 && "☆ ☆ ☆ ☆ ☆"}{" "}
+              {course.rating < 2 && course.rating >= 1 && "★ ☆ ☆ ☆ ☆"}
+              {course.rating < 3 && course.rating >= 2 && "★ ★ ☆ ☆ ☆"}
+              {course.rating < 4 && course.rating >= 3 && "★ ★ ★ ★ ☆"}
+              {course.rating < 5 && course.rating >= 4 && "★ ★ ★ ★ ☆"}
+              {course.rating >= 5 && "★ ★ ★ ★ ★"}{" "}
+            </span>
+            <span
+              style={{ color: "gray", fontSize: "15px", fontWeight: "300" }}
+            >
+              ({course.usersThatRated.length})
+            </span>
           </span>
-          <span class="price">${course.price}</span>
         </div>
+      </div>
+      <div>
+        <span class="course-price">${course.price}</span>
       </div>
     </div>
   );

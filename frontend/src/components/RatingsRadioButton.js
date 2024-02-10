@@ -25,7 +25,10 @@ export default function RadioButtonsGroup({ handleRating }) {
           control={<Radio />}
           label={
             <span>
-              ★★★★★ <span style={{ fontSize: "20px" }}>5 & up </span>
+              <span style={{ color: "#ffa534" }}> ★★★★★ </span>{" "}
+              <span style={{ fontSize: "18px", fontWeight: "lighter" }}>
+                5 & up{" "}
+              </span>
             </span>
           }
         />
@@ -34,7 +37,10 @@ export default function RadioButtonsGroup({ handleRating }) {
           control={<Radio />}
           label={
             <span>
-              ★★★★☆ <span style={{ fontSize: "20px" }}>4 & up </span>
+              <span style={{ color: "#ffa534" }}>★★★★☆ </span>{" "}
+              <span style={{ fontSize: "18px", fontWeight: "lighter" }}>
+                4 & up{" "}
+              </span>
             </span>
           }
         />
@@ -43,7 +49,10 @@ export default function RadioButtonsGroup({ handleRating }) {
           control={<Radio />}
           label={
             <span>
-              ★★★☆☆ <span style={{ fontSize: "20px" }}>3 & up </span>
+              <span style={{ color: "#ffa534" }}>★★★☆☆ </span>
+              <span style={{ fontSize: "18px", fontWeight: "lighter" }}>
+                3 & up{" "}
+              </span>
             </span>
           }
         />
@@ -52,7 +61,10 @@ export default function RadioButtonsGroup({ handleRating }) {
           control={<Radio />}
           label={
             <span>
-              ★★☆☆☆ <span style={{ fontSize: "20px" }}>2 & up </span>
+              <span style={{ color: "#ffa534" }}>★★☆☆☆ </span>{" "}
+              <span style={{ fontSize: "18px", fontWeight: "lighter" }}>
+                2 & up{" "}
+              </span>
             </span>
           }
         />
@@ -61,7 +73,10 @@ export default function RadioButtonsGroup({ handleRating }) {
           control={<Radio />}
           label={
             <span>
-              ★☆☆☆☆ <span style={{ fontSize: "20px" }}>1 & up </span>
+              <span style={{ color: "#ffa534" }}>★☆☆☆☆ </span>
+              <span style={{ fontSize: "18px", fontWeight: "lighter" }}>
+                1 & up{" "}
+              </span>
             </span>
           }
         />
@@ -70,7 +85,10 @@ export default function RadioButtonsGroup({ handleRating }) {
           control={<Radio />}
           label={
             <span>
-              ☆☆☆☆☆ <span style={{ fontSize: "20px" }}>0 & up </span>
+              <span style={{ color: "#ffa534" }}>☆☆☆☆☆ </span>
+              <span style={{ fontSize: "18px", fontWeight: "lighter" }}>
+                0 & up{" "}
+              </span>
             </span>
           }
         />

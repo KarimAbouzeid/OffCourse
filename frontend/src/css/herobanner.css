@@ -17,3 +17,14 @@
   font-size: 50px;
   margin-top: 20px;
 }
+
+.popularCourses-container {
+  display: flex;
+  flex-direction: row;
+
+  display: flex; /* Establishes a flex container */
+  flex-wrap: wrap; /* Allows items to wrap to the next line if the container width is exceeded */
+  justify-content: flex-start; /* Distributes space around items */
+  align-items: flex-start; /* Aligns items to the start of the cross axis */
+  gap: 20px; /* Optional: Adds space between items */
+}

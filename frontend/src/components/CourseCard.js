@@ -16,12 +16,24 @@ function CourseCard({ course }) {
         <div class="course-price-rating">
           <span>
             <span className="course-rating">{course.rating} </span>
-            {course.rating < 1 && course.rating >= 0 && "☆ ☆ ☆ ☆ ☆"}{" "}
-            {course.rating < 2 && course.rating >= 1 && "★ ☆ ☆ ☆ ☆"}
-            {course.rating < 3 && course.rating >= 2 && "★ ★ ☆ ☆ ☆"}
-            {course.rating < 4 && course.rating >= 3 && "★ ★ ★ ★ ☆"}
-            {course.rating < 5 && course.rating >= 4 && "★ ★ ★ ★ ☆"}
-            {course.rating >= 5 && "★ ★ ★ ★ ★"}
+            {course.rating < 1 && course.rating >= 0 && (
+              <span style={{ color: "#ffa534" }}> ☆ ☆ ☆ ☆ ☆</span>
+            )}{" "}
+            {course.rating < 2 && course.rating >= 1 && (
+              <span style={{ color: "#ffa534" }}> ★ ☆ ☆ ☆ ☆ </span>
+            )}
+            {course.rating < 3 && course.rating >= 2 && (
+              <span style={{ color: "#ffa534" }}> ★ ★ ☆ ☆ ☆ </span>
+            )}
+            {course.rating < 4 && course.rating >= 3 && (
+              <span style={{ color: "#ffa534" }}> ★ ★ ★ ★ ☆ </span>
+            )}
+            {course.rating < 5 && course.rating >= 4 && (
+              <span style={{ color: "#ffa534" }}> ★ ★ ★ ★ ☆ </span>
+            )}
+            {course.rating >= 5 && (
+              <span style={{ color: "#ffa534" }}> ★ ★ ★ ★ ★ </span>
+            )}
             <span className="numberOfReviews">
               ({course.usersThatRated.length})
             </span>

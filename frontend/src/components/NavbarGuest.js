@@ -10,7 +10,7 @@ function NavbarGuest() {
 
   return (
     <div className="container">
-      <img src={offcourse} alt="offcourse-logo" />
+      <img src={offcourse} alt="offcourse-logo" style={{ cursor: "pointer" }} />
       <p>Explore</p>
 
       <input

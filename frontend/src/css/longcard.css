@@ -1,24 +1,84 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+
 .longcard-container {
-  margin-top: 100px;
-  margin-left: 70px;
+  background-color: #fff;
+  margin-top: 80px;
+
   display: flex;
-  align-items: center;
-  background-color: #fff; /* Adjust the background color as needed */
-  border-radius: 10px; /* Rounded corners for the card */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Shadow effect for the card */
-  margin-bottom: 20px; /* Space between cards if you have multiple cards */
-  /* Add padding, width, or max-width as needed */
+  text-align: start;
+  align-items: flex-end;
+  justify-content: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+  height: 180px;
+  width: 150%;
 }
+
 .longcard-image {
-  width: 50%;
-  height: auto;
+  width: 30%;
+  height: 100%;
+  object-fit: cover;
   border-radius: 10px 0 0 10px;
-  margin-right: 150px;
 }
 
 .course-content {
-  padding: 10px 20px; /* Adjust padding as needed */
+  padding-top: 90px;
+  padding-left: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: flex-start;
+  text-align: left;
+  width: 70%;
+  height: 100%;
 }
+
+.course-title {
+  font-size: px;
+  font-weight: bold;
+  color: #333;
+}
+
+.course-summary {
+  margin-bottom: 10px;
+  font-weight: 200;
+  color: #a1a1a1;
+  margin-top: 0px;
+}
+
+.author-name {
+  font-size: 14px;
+  color: gray;
+  margin-top: 0px;
+  margin-bottom: 55px;
+}
+
+.course-rating {
+  margin-left: -6px;
+}
+
+.course-rating-star {
+  color: #ffa534;
+}
+
+.course-rating-number {
+  font-size: 18px;
+  color: #333;
+}
+
+.course-price {
+  font-size: 18px;
+
+  font-weight: 700;
+
+  font-family: "Open Sans";
+}
+
+.truncate {
+  white-space: nowrap; /* Prevents the text from wrapping to the next line */
+  overflow: hidden; /* Keeps the content clipped to the container's size */
+  text-overflow: ellipsis; /* Adds an ellipsis to clipped content */
+  width: 250px; /* Set a fixed width or use max-width */
+}
+
+/* You might need additional adjustments in the HTML structure or other CSS for exact alignment. */

@@ -14,6 +14,8 @@ function Sidebar({
   handleRating,
 }) {
   const [option, setOption] = useState();
+  const [subjectsCaret, setSubjectsCaret] = useState(false);
+  const [ratingsCaret, setRatingsCaret] = useState(false);
   const handleOption = (event) => {
     setOption(event.target.value);
     handleSubjectChange(event.target.value);
@@ -22,6 +24,14 @@ function Sidebar({
     setOption("");
     handleSubjectChange("");
   };
+  const handleSubjectsCaret = () => {
+    setSubjectsCaret((prev) => !prev);
+  };
+
+  const handleRatingsCaret = () => {
+    setRatingsCaret((prev) => !prev);
+  };
+
   return (
     <div>
       <div className="filter-container">
@@ -29,30 +39,62 @@ function Sidebar({
         <BasicSelect handleSort={handleSort} />
       </div>
       <hr></hr>
-      <h2>Ratings</h2>
-      <RadioButtonsGroup handleRating={handleRating} />
+      <div className="caret-container">
+        <h2>Ratings</h2>
+        {ratingsCaret && (
+          <button className="caret" onClick={handleRatingsCaret}>
+            {" "}
+            ⌃
+          </button>
+        )}
+        {!ratingsCaret && (
+          <button className="caret" onClick={handleRatingsCaret}>
+            ⌄
+          </button>
+        )}
+      </div>
+      {ratingsCaret && <RadioButtonsGroup handleRating={handleRating} />}
       <hr></hr>
-      <h2> Subject</h2>
+      <div className="caret-container">
+        <h2> Subject</h2>
+        {subjectsCaret && (
+          <button className="caret" onClick={handleSubjectsCaret}>
+            {" "}
+            ⌃
+          </button>
+        )}
+        {!subjectsCaret && (
+          <button className="caret" onClick={handleSubjectsCaret}>
+            ⌄
+          </button>
+        )}
+      </div>
 
-      <RadioGroup
-        aria-label="subject"
-        value={subject} // State to track the selected subject
-        onChange={(event) => handleSubjectChange(event.target.value)} // Function to update the selected subject
-      >
-        {allSubjects.map((subject, index) => (
-          <div key={index}>
-            <FormControlLabel
-              key={subject.subject} // Unique key for each radio button
-              value={subject.subject}
-              control={<Radio />}
-              label={subject.subject}
-              onChange={handleOption}
-            />
-          </div>
-        ))}
-      </RadioGroup>
+      {subjectsCaret && (
+        <RadioGroup
+          aria-label="subject"
+          value={subject} // State to track the selected subject
+          onChange={(event) => handleSubjectChange(event.target.value)} // Function to update the selected subject
+        >
+          {allSubjects.map((subject, index) => (
+            <div key={index}>
+              <FormControlLabel
+                key={subject.subject} // Unique key for each radio button
+                value={subject.subject}
+                control={<Radio />}
+                label={subject.subject}
+                onChange={handleOption}
+              />
+            </div>
+          ))}
+        </RadioGroup>
+      )}
       <hr></hr>
-      <button onClick={removeFilters}> Remove filters</button>
+      <div className="removefilters-container">
+        <button onClick={removeFilters} className="removefilters-button">
+          Remove filters
+        </button>
+      </div>
     </div>
   );
 }

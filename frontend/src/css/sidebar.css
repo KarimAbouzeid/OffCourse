@@ -1,14 +1,44 @@
 .container-sidebar {
-  margin-top: 100px;
-  max-width: 30%;
+  margin-top: 70px;
+  width: 22%;
   text-align: left;
   margin-left: 100px;
+  margin-right: 130px;
 }
 .filter-container {
   display: flex; /* Enables Flexbox */
   align-items: center; /* Vertically centers the flex items */
-  justify-content: start; /* Aligns items to the start of the container */
+  justify-content: flex-start; /* Aligns items to the start of the container */
 }
 .filter-title {
   margin-right: 190px; /* Adds space between the title and the dropdown */
+}
+
+.removefilters-button {
+  padding: 10;
+  background-color: #4969d1;
+  color: white;
+  height: 50px;
+  width: 120px;
+  border-radius: 5%;
+  border: 0;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.removefilters-container {
+  align-items: left;
+  text-align: left;
+}
+
+.caret-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.caret {
+  font-size: 22px;
+  cursor: pointer;
+  background-color: transparent;
+  border: 0;
 }
